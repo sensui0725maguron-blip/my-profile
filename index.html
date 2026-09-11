@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>林哲淳 - 个人主页</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+  <style>
+    :root {
+      --bg:          #f0f2f5;
+      --card-bg:    #ffffff;
+      --accent:     #1a6ff0;
+      --accent-dim: #e8f0fe;
+      --text-hi:    #1a1a2e;
+      --text-mid:   #555577;
+      --text-lo:    #888899;
+      --border:     #e4e6eb;
+      --tag-bg:     #e3edff;
+      --tag-text:   #1a6ff0;
+      --shadow:     0 8px 32px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+      --radius:     20px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text-hi);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 60px 20px 80px;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      width: 100%;
+      max-width: 720px;
+      overflow: hidden;
+      animation: slideUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .card-top {
+      height: 120px;
+      background: linear-gradient(135deg, #1a6ff0 0%, #3b82f6 50%, #60a5fa 100%);
+      position: relative;
+    }
+    .card-top::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; left: 0; right: 0;
+      height: 60px;
+      background: var(--card-bg);
+      border-radius: 50% 50% 0 0;
+    }
+    .avatar-wrap {
+      position: relative; z-index: 2;
+      display: flex; justify-content: center;
+      margin-top: -56px;
+    }
+    .avatar {
+      width: 112px; height: 112px;
+      border-radius: 50%;
+      border: 5px solid var(--card-bg);
+      object-fit: cover;
+      box-shadow: 0 4px 16px rgba(26,111,240,0.25);
+      background: #e4e6eb;
+      transition: transform 0.3s ease;
+    }
+    .avatar:hover { transform: scale(1.05); }
+    .avatar-verified {
+      position: absolute;
+      bottom: 4px; right: calc(50% - 100px);
+      background: var(--accent); color: #fff;
+      border-radius: 50%;
+      width: 28px; height: 28px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      border: 3px solid var(--card-bg);
+    }
+    .body { padding: 24px 48px 40px; text-align: center; }
+    .name { font-size: 26px; font-weight: 700; color: var(--text-hi); letter-spacing: 0.5px; }
+    .role { font-size: 14px; color: var(--accent); font-weight: 500; margin-top: 6px; letter-spacing: 1px; }
+    .divider { width: 40px; height: 3px; background: linear-gradient(90deg, var(--accent), #60a5fa); border-radius: 2px; margin: 16px auto; }
+    .bio { font-size: 15px; color: var(--text-mid); line-height: 1.8; max-width: 560px; margin: 0 auto; }
+    .tags-section { margin-top: 24px; }
+    .tags-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-lo); margin-bottom: 10px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .tag {
+      background: var(--tag-bg); color: var(--tag-text);
+      font-size: 13px; font-weight: 500;
+      padding: 5px 14px; border-radius: 20px;
+      transition: background 0.2s, transform 0.2s; cursor: default;
+    }
+    .tag:hover { background: #c8dcf8; transform: translateY(-2px); }
+    .stats { display: flex; justify-content: center; gap: 40px; margin: 28px 0 24px; padding: 20px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .stat { text-align: center; }
+    .stat-num { font-size: 22px; font-weight: 700; color: var(--text-hi); }
+    .stat-label { font-size: 11px; color: var(--text-lo); margin-top: 2px; letter-spacing: 1px; }
+    .socials { display: flex; gap: 12px; justify-content: center; margin-bottom: 24px; }
+    .social-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--accent-dim); color: var(--accent);
+      font-size: 18px; text-decoration: none;
+      transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+    .social-btn:hover { background: var(--accent); color: #fff; transform: translateY(-3px); box-shadow: 0 6px 16px rgba(26,111,240,0.3); }
+    .contact-row { display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: center; }
+    .contact-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-mid); text-decoration: none; transition: color 0.2s; }
+    .contact-item i { color: var(--accent); width: 16px; }
+    .contact-item:hover { color: var(--accent); }
+    .footer { text-align: center; padding: 16px; font-size: 12px; color: var(--text-lo); border-top: 1px solid var(--border); }
+    @media (max-width: 540px) { .body { padding: 20px 24px 32px; } .name { font-size: 22px; } .stats { gap: 24px; } .contact-row { gap: 6px 14px; } }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-top"></div>
+  <div class="avatar-wrap">
+    <img class="avatar" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Linzhechun&backgroundColor=b6e3f4" alt="林哲淳" />
+    <div class="avatar-verified" title="已认证"><i class="fas fa-check"></i></div>
+  </div>
+  <div class="body">
+    <h1 class="name">林哲淳</h1>
+    <p class="role">AI 产品 &amp; 技术探索者</p>
+    <div class="divider"></div>
+    <p class="bio">
+      专注 AI 产品设计与技术实践，热衷探索大模型在工作流中的落地场景。<br/>
+      相信技术服务于人，善于将复杂需求转化为简洁方案。
+    </p>
+    <div class="tags-section">
+      <div class="tags-label">技能 &amp; 兴趣</div>
+      <div class="tags">
+        <span class="tag">AI 产品</span>
+        <span class="tag">LLM 应用</span>
+        <span class="tag">Python</span>
+        <span class="tag">数据分析</span>
+        <span class="tag">产品设计</span>
+        <span class="tag">自动化</span>
+        <span class="tag">Prompt 工程</span>
+        <span class="tag">效率工具</span>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="stat-num">36</div><div class="stat-label">文章</div></div>
+      <div class="stat"><div class="stat-num">128</div><div class="stat-label">关注者</div></div>
+      <div class="stat"><div class="stat-num">94</div><div class="stat-label">获赞</div></div>
+    </div>
+    <div class="socials">
+      <a class="social-btn" href="#" title="GitHub"><i class="fab fa-github"></i></a>
+      <a class="social-btn" href="#" title="微信公众号"><i class="fab fa-weixin"></i></a>
+      <a class="social-btn" href="#" title="邮箱"><i class="fas fa-envelope"></i></a>
+      <a class="social-btn" href="#" title="小红书"><i class="fab fa-strava"></i></a>
+      <a class="social-btn" href="#" title="即刻"><i class="fas fa-bolt"></i></a>
+    </div>
+    <div class="contact-row">
+      <a class="contact-item" href="mailto:zhechun@example.com"><i class="fas fa-envelope"></i>zhechun@example.com</a>
+      <a class="contact-item" href="#"><i class="fas fa-globe"></i>example.com</a>
+      <a class="contact-item" href="#"><i class="fas fa-map-marker-alt"></i>深圳</a>
+    </div>
+  </div>
+  <div class="footer">&copy; 2026 林哲淳 · 用 ❤️ 构建</div>
+</div>
+
+</body>
+</html>
